@@ -105,8 +105,15 @@ static NSString *const CHANNEL_NAME = @"PonnamKarthik/fluttertoast";
             [self makeToast:msg duration:time position:CSToastPositionCenter style:style];
             
         } else {
-            
-            [self makeToast:msg duration:time position:CSToastPositionBottom style:style];
+
+            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+
+
+            CGPoint customPosition = CGPointMake(screenWidth/2, (screenHeight/100)*80);
+            NSValue *positionValue = [NSValue valueWithCGPoint:customPosition];
+
+            [self makeToast:msg duration:time position:positionValue style:style];
             
         }
         result([NSNumber numberWithBool:true]);
